@@ -1,0 +1,16 @@
+PODS:
+  - ReceiptKit (0.1.0)
+
+DEPENDENCIES:
+  - ReceiptKit (from `../`)
+
+EXTERNAL SOURCES:
+  ReceiptKit:
+    :path: ../
+
+SPEC CHECKSUMS:
+  ReceiptKit: aeb8228cfa54b40e315a5532c77bebb74dde172c
+
+PODFILE CHECKSUM: 78b7808fee5f4ef09c65133637a6eab6403b400e
+
+COCOAPODS: 1.0.1
