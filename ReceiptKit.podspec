@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = 'ReceiptKit'
   s.version          = '1.0.0'
-  s.summary          = 'A short description of ReceiptKit.'
+  s.summary          = 'Swift receipt framework to retrieve iOS app purchase date'
   s.homepage         = 'https://github.com/eggheadgames/ReceiptKit'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = 'Egghead Games LLC'
