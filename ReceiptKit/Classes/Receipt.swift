@@ -6,7 +6,7 @@ import Foundation
 
 public struct Receipt {
 
-    private let dictionaryRepresentation: NSDictionary
+    fileprivate let dictionaryRepresentation: NSDictionary
 
     init?(JSONObject: AnyObject) {
         guard let dictionaryRepresentation = JSONObject as? NSDictionary else { return nil }
@@ -25,7 +25,7 @@ public extension Receipt {
         return dictionaryRepresentation[key] as? Int
     }
 
-    private static let statusKey = "status"
+    fileprivate static let statusKey = "status"
 
 }
 
@@ -38,7 +38,7 @@ public extension Receipt {
         return dictionaryRepresentation[key] as? String
     }
 
-    private static let environmentKey = "environment"
+    fileprivate static let environmentKey = "environment"
 
 }
 
@@ -46,13 +46,13 @@ public extension Receipt {
 
 public extension Receipt {
 
-    var purchaseDate: NSDate? {
+    var purchaseDate: Date? {
         let keys = Receipt.purchaseDateKeys
-        guard let rawReceipt = dictionaryRepresentation[keys.0] else { return nil }
+        guard let rawReceipt = dictionaryRepresentation[keys.0] as? NSDictionary else { return nil }
         guard let rawDate = rawReceipt[keys.1] as? String else { return nil }
         return ReceiptDateFormatter.dateFromString(rawDate)
     }
 
-    private static let purchaseDateKeys = ("receipt", "original_purchase_date")
+    fileprivate static let purchaseDateKeys = ("receipt", "original_purchase_date")
 
 }
