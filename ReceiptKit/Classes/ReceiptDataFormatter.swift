@@ -8,11 +8,11 @@ final class ReceiptDateFormatter {}
 
 extension ReceiptDateFormatter {
 
-    static func dateFromString(string: String) -> NSDate? {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.locale = NSLocale(localeIdentifier: ReceiptDateFormatter.locale)
+    static func dateFromString(_ string: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: ReceiptDateFormatter.locale)
         dateFormatter.dateFormat = ReceiptDateFormatter.dateFormat
-        return dateFormatter.dateFromString(string)
+        return dateFormatter.date(from: string)
     }
 
 }

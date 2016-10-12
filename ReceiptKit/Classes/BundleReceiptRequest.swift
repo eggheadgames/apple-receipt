@@ -6,7 +6,7 @@ import StoreKit
 
 public protocol BundleReceiptRequestDelegate: class {
 
-    func bundleReceiptRequest(bundleReceiptRequest: BundleReceiptRequest, didRetrieveReceipt receipt: Receipt?)
+    func bundleReceiptRequest(_ bundleReceiptRequest: BundleReceiptRequest, didRetrieveReceipt receipt: Receipt?)
 
 }
 
@@ -14,10 +14,10 @@ public protocol BundleReceiptRequestDelegate: class {
 
 public final class BundleReceiptRequest: NSObject {
 
-    public let bundle: NSBundle
+    public let bundle: Bundle
     public weak var delegate: BundleReceiptRequestDelegate?
 
-    public init(bundle: NSBundle = NSBundle.mainBundle(), delegate: BundleReceiptRequestDelegate? = nil) {
+    public init(bundle: Bundle = Bundle.main, delegate: BundleReceiptRequestDelegate? = nil) {
         self.bundle = bundle
         self.delegate = delegate
     }
@@ -40,7 +40,7 @@ public extension BundleReceiptRequest {
 
 extension BundleReceiptRequest: CompoundReceiptRequestDelegate {
 
-    func compoundReceiptRequest(compoundReceiptRequest: CompoundReceiptRequest, didRetrieveReceipt receipt: Receipt?) {
+    func compoundReceiptRequest(_ compoundReceiptRequest: CompoundReceiptRequest, didRetrieveReceipt receipt: Receipt?) {
         delegate?.bundleReceiptRequest(self, didRetrieveReceipt: receipt)
     }
 
@@ -50,12 +50,12 @@ extension BundleReceiptRequest: CompoundReceiptRequestDelegate {
 
 private extension BundleReceiptRequest {
 
-    var receiptData: NSData? {
+    var receiptData: Data? {
         guard let receiptURL = receiptURL else { return nil }
-        return NSData(contentsOfURL: receiptURL)
+        return (try? Data(contentsOf: receiptURL))
     }
 
-    var receiptURL: NSURL? {
+    var receiptURL: URL? {
         return bundle.appStoreReceiptURL
     }
 
@@ -65,7 +65,7 @@ private extension BundleReceiptRequest {
 
 extension BundleReceiptRequest: SKRequestDelegate {
 
-    public func requestDidFinish(request: SKRequest) {
+    public func requestDidFinish(_ request: SKRequest) {
         guard let compoundReceiptRequest = instantiateCompoundReceiptRequest() else {
             delegate?.bundleReceiptRequest(self, didRetrieveReceipt: nil)
             return
@@ -73,7 +73,7 @@ extension BundleReceiptRequest: SKRequestDelegate {
         compoundReceiptRequest.start()
     }
 
-    public func request(request: SKRequest, didFailWithError error: NSError) {
+    public func request(_ request: SKRequest, didFailWithError error: Error) {
         delegate?.bundleReceiptRequest(self, didRetrieveReceipt: nil)
     }
 
