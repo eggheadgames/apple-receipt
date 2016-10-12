@@ -1,6 +1,0 @@
-use_frameworks!
-target 'ReceiptKit_Tests' do
-  pod 'ReceiptKit', :path => '../'
-  
-  
-end
