@@ -4,14 +4,9 @@
 
 osx_image: xcode8
 language: objective-c
-# cache: cocoapods
-# podfile: Example/Podfile
-# before_install:
-# - gem install cocoapods # Since Travis is not always on latest version
-# - pod install --project-directory=Example
 script:
-- set -o pipefail && xcodebuild test -workspace Example/ReceiptKit.xcworkspace -scheme ReceiptKit-Example -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 6" -configuration Release ONLY_ACTIVE_ARCH=YES | xcpretty
-- pod lib lint
+
+- set -o pipefail && xcodebuild test -scheme ReceiptKit -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 6" ONLY_ACTIVE_ARCH=YES | xcpretty
 
 notifications:
   email: false
