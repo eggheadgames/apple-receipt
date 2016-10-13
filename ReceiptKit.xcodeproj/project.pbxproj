@@ -13,7 +13,7 @@
 		1E1A11CE1D8C41B000969F5B /* BundleReceiptRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1A11C71D8C41B000969F5B /* BundleReceiptRequest.swift */; };
 		1E1A11CF1D8C41B000969F5B /* CompoundReceiptRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1A11C81D8C41B000969F5B /* CompoundReceiptRequest.swift */; };
 		1E1A11D01D8C41B000969F5B /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1A11C91D8C41B000969F5B /* Receipt.swift */; };
-		1E1A11D11D8C41B000969F5B /* ReceiptDataFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1A11CA1D8C41B000969F5B /* ReceiptDataFormatter.swift */; };
+		1E1A11D11D8C41B000969F5B /* ReceiptDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1A11CA1D8C41B000969F5B /* ReceiptDateFormatter.swift */; };
 		1E1A11D21D8C41B000969F5B /* ReceiptRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1A11CB1D8C41B000969F5B /* ReceiptRequest.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +37,7 @@
 		1E1A11C71D8C41B000969F5B /* BundleReceiptRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleReceiptRequest.swift; sourceTree = "<group>"; };
 		1E1A11C81D8C41B000969F5B /* CompoundReceiptRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompoundReceiptRequest.swift; sourceTree = "<group>"; };
 		1E1A11C91D8C41B000969F5B /* Receipt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Receipt.swift; sourceTree = "<group>"; };
-		1E1A11CA1D8C41B000969F5B /* ReceiptDataFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptDataFormatter.swift; sourceTree = "<group>"; };
+		1E1A11CA1D8C41B000969F5B /* ReceiptDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptDateFormatter.swift; sourceTree = "<group>"; };
 		1E1A11CB1D8C41B000969F5B /* ReceiptRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,7 +111,7 @@
 				1E1A11C71D8C41B000969F5B /* BundleReceiptRequest.swift */,
 				1E1A11C81D8C41B000969F5B /* CompoundReceiptRequest.swift */,
 				1E1A11C91D8C41B000969F5B /* Receipt.swift */,
-				1E1A11CA1D8C41B000969F5B /* ReceiptDataFormatter.swift */,
+				1E1A11CA1D8C41B000969F5B /* ReceiptDateFormatter.swift */,
 				1E1A11CB1D8C41B000969F5B /* ReceiptRequest.swift */,
 			);
 			path = Classes;
@@ -231,7 +231,7 @@
 				1E1A11D01D8C41B000969F5B /* Receipt.swift in Sources */,
 				1E1A11CE1D8C41B000969F5B /* BundleReceiptRequest.swift in Sources */,
 				1E1A11CF1D8C41B000969F5B /* CompoundReceiptRequest.swift in Sources */,
-				1E1A11D11D8C41B000969F5B /* ReceiptDataFormatter.swift in Sources */,
+				1E1A11D11D8C41B000969F5B /* ReceiptDateFormatter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
