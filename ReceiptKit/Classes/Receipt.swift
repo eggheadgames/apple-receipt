@@ -46,7 +46,7 @@ public extension Receipt {
 
 public extension Receipt {
 
-    var purchaseDate: Date? {
+    var purchaseAt: Date? {
         let keys = Receipt.purchaseDateKeys
         guard let rawReceipt = dictionaryRepresentation[keys.0] as? NSDictionary else { return nil }
         guard let rawDate = rawReceipt[keys.1] as? String else { return nil }
