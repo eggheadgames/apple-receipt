@@ -28,14 +28,14 @@ final class CompoundReceiptRequest {
 extension CompoundReceiptRequest {
 
     func start() {
-        beginParsingType(.production)
+        beginParsing(receiptType: .production)
     }
 
 }
 
 private extension CompoundReceiptRequest {
 
-    func beginParsingType(_ receiptType: ReceiptType) {
+    func beginParsing(receiptType: ReceiptType) {
         let receiptRequest = instantiateReceiptRequestWithReceiptType(receiptType)
         receiptRequest.start()
     }
@@ -69,22 +69,22 @@ private extension CompoundReceiptRequest {
     func didFinishParsing(receipt: Receipt?, type: ReceiptType) {
         switch type {
         case .production:
-            didFinishParsingProductionReceipt(receipt)
+            didFinishParsing(productionReceipt: receipt)
         case .sandbox:
-            didFinishParsingSandboxReceipt(receipt)
+            didFinishParsing(sandboxReceipt: receipt)
         }
     }
 
-    func didFinishParsingProductionReceipt(_ receipt: Receipt?) {
-        if let receipt = receipt {
+    func didFinishParsing(productionReceipt: Receipt?) {
+        if let receipt = productionReceipt {
             delegate?.compoundReceiptRequest(self, didRetrieve: receipt)
         } else {
-            beginParsingType(.sandbox)
+            beginParsing(receiptType: .sandbox)
         }
     }
 
-    func didFinishParsingSandboxReceipt(_ receipt: Receipt?) {
-        delegate?.compoundReceiptRequest(self, didRetrieve: receipt)
+    func didFinishParsing(sandboxReceipt: Receipt?) {
+        delegate?.compoundReceiptRequest(self, didRetrieve: sandboxReceipt)
     }
 
 }
