@@ -50,7 +50,7 @@ public extension Receipt {
         let keys = Receipt.purchaseDateKeys
         guard let rawReceipt = dictionaryRepresentation[keys.0] as? NSDictionary else { return nil }
         guard let rawDate = rawReceipt[keys.1] as? String else { return nil }
-        return ReceiptDateFormatter.dateFromString(rawDate)
+        return ReceiptDateFormatter.date(from: rawDate)
     }
 
     fileprivate static let purchaseDateKeys = ("receipt", "original_purchase_date")

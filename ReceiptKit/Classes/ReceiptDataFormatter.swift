@@ -8,7 +8,7 @@ final class ReceiptDateFormatter {}
 
 extension ReceiptDateFormatter {
 
-    static func dateFromString(_ string: String) -> Date? {
+    static func date(from string: String) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: ReceiptDateFormatter.locale)
         dateFormatter.dateFormat = ReceiptDateFormatter.dateFormat
