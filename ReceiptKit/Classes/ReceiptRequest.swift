@@ -52,7 +52,7 @@ extension ReceiptRequest {
 private extension ReceiptRequest {
 
     func newDataTask() -> URLSessionDataTask {
-        return session.dataTask(with: request, completionHandler: { [delegate, queue] data, response, error in
+        return session.dataTask(with: request) { [delegate, queue] data, response, error in
             var JSONObject: AnyObject? {
                 guard let data = data else { return nil }
                 return try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject?
@@ -64,7 +64,7 @@ private extension ReceiptRequest {
             OperationQueue.main.addOperation {
                 delegate?.receiptRequest(self, didRetrieve: receipt)
             }
-        }) 
+        }
     }
 
 }
