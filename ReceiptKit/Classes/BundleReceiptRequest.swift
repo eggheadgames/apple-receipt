@@ -17,7 +17,7 @@ public final class BundleReceiptRequest: NSObject {
     public let bundle: Bundle
     public weak var delegate: BundleReceiptRequestDelegate?
 
-    public init(bundle: Bundle = Bundle.main, delegate: BundleReceiptRequestDelegate? = nil) {
+    public init(bundle: Bundle = .main, delegate: BundleReceiptRequestDelegate? = nil) {
         self.bundle = bundle
         self.delegate = delegate
     }
