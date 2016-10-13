@@ -6,7 +6,7 @@ import Foundation
 
 protocol CompoundReceiptRequestDelegate: class {
 
-    func compoundReceiptRequest(_ compoundReceiptRequest: CompoundReceiptRequest, didRetrieveReceipt receipt: Receipt?)
+    func compoundReceiptRequest(_ compoundReceiptRequest: CompoundReceiptRequest, didRetrieve receipt: Receipt?)
 
 }
 
@@ -58,15 +58,15 @@ extension CompoundReceiptRequest {
 
 extension CompoundReceiptRequest: ReceiptRequestDelegate {
 
-    func receiptRequest(_ receiptRequest: ReceiptRequest, didRetrieveReceipt receipt: Receipt?) {
-        didFinishParsingReceipt(receipt, type: receiptRequest.receiptType)
+    func receiptRequest(_ receiptRequest: ReceiptRequest, didRetrieve receipt: Receipt?) {
+        didFinishParsing(receipt: receipt, type: receiptRequest.receiptType)
     }
 
 }
 
 private extension CompoundReceiptRequest {
 
-    func didFinishParsingReceipt(_ receipt: Receipt?, type: ReceiptType) {
+    func didFinishParsing(receipt: Receipt?, type: ReceiptType) {
         switch type {
         case .production:
             didFinishParsingProductionReceipt(receipt)
@@ -77,14 +77,14 @@ private extension CompoundReceiptRequest {
 
     func didFinishParsingProductionReceipt(_ receipt: Receipt?) {
         if let receipt = receipt {
-            delegate?.compoundReceiptRequest(self, didRetrieveReceipt: receipt)
+            delegate?.compoundReceiptRequest(self, didRetrieve: receipt)
         } else {
             beginParsingType(.sandbox)
         }
     }
 
     func didFinishParsingSandboxReceipt(_ receipt: Receipt?) {
-        delegate?.compoundReceiptRequest(self, didRetrieveReceipt: receipt)
+        delegate?.compoundReceiptRequest(self, didRetrieve: receipt)
     }
 
 }

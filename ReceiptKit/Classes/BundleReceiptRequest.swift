@@ -6,7 +6,7 @@ import StoreKit
 
 public protocol BundleReceiptRequestDelegate: class {
 
-    func bundleReceiptRequest(_ bundleReceiptRequest: BundleReceiptRequest, didRetrieveReceipt receipt: Receipt?)
+    func bundleReceiptRequest(_ bundleReceiptRequest: BundleReceiptRequest, didRetrieve receipt: Receipt?)
 
 }
 
@@ -40,8 +40,8 @@ public extension BundleReceiptRequest {
 
 extension BundleReceiptRequest: CompoundReceiptRequestDelegate {
 
-    func compoundReceiptRequest(_ compoundReceiptRequest: CompoundReceiptRequest, didRetrieveReceipt receipt: Receipt?) {
-        delegate?.bundleReceiptRequest(self, didRetrieveReceipt: receipt)
+    func compoundReceiptRequest(_ compoundReceiptRequest: CompoundReceiptRequest, didRetrieve receipt: Receipt?) {
+        delegate?.bundleReceiptRequest(self, didRetrieve: receipt)
     }
 
 }
@@ -67,14 +67,14 @@ extension BundleReceiptRequest: SKRequestDelegate {
 
     public func requestDidFinish(_ request: SKRequest) {
         guard let compoundReceiptRequest = instantiateCompoundReceiptRequest() else {
-            delegate?.bundleReceiptRequest(self, didRetrieveReceipt: nil)
+            delegate?.bundleReceiptRequest(self, didRetrieve: nil)
             return
         }
         compoundReceiptRequest.start()
     }
 
     public func request(_ request: SKRequest, didFailWithError error: Error) {
-        delegate?.bundleReceiptRequest(self, didRetrieveReceipt: nil)
+        delegate?.bundleReceiptRequest(self, didRetrieve: nil)
     }
 
 }
