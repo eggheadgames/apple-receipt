@@ -55,7 +55,7 @@ private extension ReceiptRequest {
         return session.dataTask(with: request) { [delegate, queue] data, response, error in
             var JSONObject: AnyObject? {
                 guard let data = data else { return nil }
-                return try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject?
+                return try? JSONSerialization.jsonObject(with: data, options: []) as AnyObject
             }
             var receipt: Receipt? {
                 guard let JSONObject = JSONObject else { return nil }
