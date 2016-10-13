@@ -36,20 +36,9 @@ extension CompoundReceiptRequest {
 private extension CompoundReceiptRequest {
 
     func beginParsing(receiptType: ReceiptType) {
-        let receiptRequest = instantiateReceiptRequestWithReceiptType(receiptType)
-        receiptRequest.start()
-    }
-
-}
-
-// MARK: Receipt request
-
-extension CompoundReceiptRequest {
-
-    func instantiateReceiptRequestWithReceiptType(_ receiptType: ReceiptType) -> ReceiptRequest {
         let receiptRequest = ReceiptRequest(receiptData: receiptData, receiptType: receiptType)
         receiptRequest.delegate = self
-        return receiptRequest
+        receiptRequest.start()
     }
 
 }
