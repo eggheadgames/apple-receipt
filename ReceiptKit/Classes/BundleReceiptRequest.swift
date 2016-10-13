@@ -52,7 +52,7 @@ private extension BundleReceiptRequest {
 
     var receiptData: Data? {
         guard let receiptURL = receiptURL else { return nil }
-        return (try? Data(contentsOf: receiptURL))
+        return try? Data(contentsOf: receiptURL)
     }
 
     var receiptURL: URL? {
