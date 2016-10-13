@@ -6,7 +6,7 @@ import Foundation
 
 protocol ReceiptRequestDelegate: class {
 
-    func receiptRequest(_ receiptRequest: ReceiptRequest, didRetrieveReceipt receipt: Receipt?)
+    func receiptRequest(_ receiptRequest: ReceiptRequest, didRetrieve receipt: Receipt?)
 
 }
 
@@ -62,7 +62,7 @@ private extension ReceiptRequest {
                 return Receipt(JSONObject: JSONObject)
             }
             OperationQueue.main.addOperation {
-                delegate?.receiptRequest(self, didRetrieveReceipt: receipt)
+                delegate?.receiptRequest(self, didRetrieve: receipt)
             }
         }) 
     }
