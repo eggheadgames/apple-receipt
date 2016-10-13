@@ -74,10 +74,10 @@ private extension ReceiptRequest {
 private extension ReceiptRequest {
 
     var request: URLRequest {
-        let request = NSMutableURLRequest(url: URL)
+        var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = requestData
-        return request as URLRequest
+        return request
     }
 
     var requestData: Data {
@@ -102,11 +102,11 @@ private extension ReceiptRequest {
 
 private extension ReceiptRequest {
 
-    var URL: Foundation.URL {
-        guard let URL = Foundation.URL(string: URLString) else {
+    var url: URL {
+        guard let url = URL(string: URLString) else {
             preconditionFailure("Invalid receipt validation URL")
         }
-        return URL
+        return url
     }
 
     var URLString: String {
