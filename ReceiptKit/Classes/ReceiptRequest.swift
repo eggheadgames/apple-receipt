@@ -6,7 +6,7 @@ import Foundation
 
 protocol ReceiptRequestDelegate: class {
 
-    func receiptRequest(receiptRequest: ReceiptRequest, didRetrieveReceipt receipt: Receipt?)
+    func receiptRequest(_ receiptRequest: ReceiptRequest, didRetrieve receipt: Receipt?)
 
 }
 
@@ -14,15 +14,15 @@ protocol ReceiptRequestDelegate: class {
 
 final class ReceiptRequest {
 
-    let receiptData: NSData
+    let receiptData: Data
     let receiptType: ReceiptType
 
     weak var delegate: ReceiptRequestDelegate?
 
-    private weak var queue: NSOperationQueue?
-    private lazy var session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+    fileprivate weak var queue: OperationQueue?
+    fileprivate lazy var session = URLSession(configuration: URLSessionConfiguration.default)
 
-    init(receiptData: NSData, receiptType: ReceiptType) {
+    init(receiptData: Data, receiptType: ReceiptType) {
         self.receiptData = receiptData
         self.receiptType = receiptType
     }
@@ -31,8 +31,8 @@ final class ReceiptRequest {
 
 enum ReceiptType {
 
-    case Sandbox
-    case Production
+    case sandbox
+    case production
 
 }
 
@@ -51,18 +51,18 @@ extension ReceiptRequest {
 
 private extension ReceiptRequest {
 
-    func newDataTask() -> NSURLSessionDataTask {
-        return session.dataTaskWithRequest(request) { [delegate, queue] data, response, error in
+    func newDataTask() -> URLSessionDataTask {
+        return session.dataTask(with: request) { [delegate, queue] data, response, error in
             var JSONObject: AnyObject? {
                 guard let data = data else { return nil }
-                return try? NSJSONSerialization.JSONObjectWithData(data, options: [])
+                return try? JSONSerialization.jsonObject(with: data, options: []) as AnyObject
             }
             var receipt: Receipt? {
                 guard let JSONObject = JSONObject else { return nil }
                 return Receipt(JSONObject: JSONObject)
             }
-            NSOperationQueue.mainQueue().addOperationWithBlock {
-                delegate?.receiptRequest(self, didRetrieveReceipt: receipt)
+            OperationQueue.main.addOperation {
+                delegate?.receiptRequest(self, didRetrieve: receipt)
             }
         }
     }
@@ -73,16 +73,16 @@ private extension ReceiptRequest {
 
 private extension ReceiptRequest {
 
-    var request: NSURLRequest {
-        let request = NSMutableURLRequest(URL: URL)
-        request.HTTPMethod = "POST"
-        request.HTTPBody = requestData
+    var request: URLRequest {
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpBody = requestData
         return request
     }
 
-    var requestData: NSData {
+    var requestData: Data {
         do {
-            return try NSJSONSerialization.dataWithJSONObject(requestDictionary, options: [])
+            return try JSONSerialization.data(withJSONObject: requestDictionary, options: [])
         } catch {
             preconditionFailure("Invalid request data")
         }
@@ -90,7 +90,7 @@ private extension ReceiptRequest {
 
     var requestDictionary: [String: String] {
         let key = ReceiptRequest.requestReceiptDataKey
-        let value = receiptData.base64EncodedStringWithOptions([])
+        let value = receiptData.base64EncodedString(options: [])
         return [key: value]
     }
 
@@ -102,18 +102,18 @@ private extension ReceiptRequest {
 
 private extension ReceiptRequest {
 
-    var URL: NSURL {
-        guard let URL = NSURL(string: URLString) else {
+    var url: URL {
+        guard let url = URL(string: URLString) else {
             preconditionFailure("Invalid receipt validation URL")
         }
-        return URL
+        return url
     }
 
     var URLString: String {
         switch receiptType {
-        case .Sandbox:
+        case .sandbox:
             return ReceiptRequest.sandboxURL
-        case .Production:
+        case .production:
             return ReceiptRequest.productionURL
         }
     }

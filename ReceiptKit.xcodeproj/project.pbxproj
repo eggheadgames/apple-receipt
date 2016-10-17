@@ -13,7 +13,7 @@
 		1E1A11CE1D8C41B000969F5B /* BundleReceiptRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1A11C71D8C41B000969F5B /* BundleReceiptRequest.swift */; };
 		1E1A11CF1D8C41B000969F5B /* CompoundReceiptRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1A11C81D8C41B000969F5B /* CompoundReceiptRequest.swift */; };
 		1E1A11D01D8C41B000969F5B /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1A11C91D8C41B000969F5B /* Receipt.swift */; };
-		1E1A11D11D8C41B000969F5B /* ReceiptDataFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1A11CA1D8C41B000969F5B /* ReceiptDataFormatter.swift */; };
+		1E1A11D11D8C41B000969F5B /* ReceiptDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1A11CA1D8C41B000969F5B /* ReceiptDateFormatter.swift */; };
 		1E1A11D21D8C41B000969F5B /* ReceiptRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1A11CB1D8C41B000969F5B /* ReceiptRequest.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +37,7 @@
 		1E1A11C71D8C41B000969F5B /* BundleReceiptRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleReceiptRequest.swift; sourceTree = "<group>"; };
 		1E1A11C81D8C41B000969F5B /* CompoundReceiptRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompoundReceiptRequest.swift; sourceTree = "<group>"; };
 		1E1A11C91D8C41B000969F5B /* Receipt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Receipt.swift; sourceTree = "<group>"; };
-		1E1A11CA1D8C41B000969F5B /* ReceiptDataFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptDataFormatter.swift; sourceTree = "<group>"; };
+		1E1A11CA1D8C41B000969F5B /* ReceiptDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptDateFormatter.swift; sourceTree = "<group>"; };
 		1E1A11CB1D8C41B000969F5B /* ReceiptRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,7 +111,7 @@
 				1E1A11C71D8C41B000969F5B /* BundleReceiptRequest.swift */,
 				1E1A11C81D8C41B000969F5B /* CompoundReceiptRequest.swift */,
 				1E1A11C91D8C41B000969F5B /* Receipt.swift */,
-				1E1A11CA1D8C41B000969F5B /* ReceiptDataFormatter.swift */,
+				1E1A11CA1D8C41B000969F5B /* ReceiptDateFormatter.swift */,
 				1E1A11CB1D8C41B000969F5B /* ReceiptRequest.swift */,
 			);
 			path = Classes;
@@ -174,7 +174,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Egghead Games LLC";
 				TargetAttributes = {
 					1E1A11A81D8C416100969F5B = {
@@ -231,7 +231,7 @@
 				1E1A11D01D8C41B000969F5B /* Receipt.swift in Sources */,
 				1E1A11CE1D8C41B000969F5B /* BundleReceiptRequest.swift in Sources */,
 				1E1A11CF1D8C41B000969F5B /* CompoundReceiptRequest.swift in Sources */,
-				1E1A11D11D8C41B000969F5B /* ReceiptDataFormatter.swift in Sources */,
+				1E1A11D11D8C41B000969F5B /* ReceiptDateFormatter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,8 +268,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -317,8 +319,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -338,6 +342,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -349,6 +354,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -360,7 +366,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.eggheadgames.ReceiptKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -368,6 +374,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -379,7 +386,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.eggheadgames.ReceiptKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -390,7 +397,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.eggheadgames.ReceiptKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -401,7 +408,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.eggheadgames.ReceiptKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
