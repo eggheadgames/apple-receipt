@@ -29,3 +29,30 @@ github "eggheadgames/ReceiptKit"
 ```
 
 And run `carthage update`. You can find more info here https://github.com/Carthage/Carthage#getting-started.
+
+## Usage
+
+1. Instantiate `BundleReceiptRequest`:
+    ```swift
+    let bundleReceiptRequest = BundleReceiptRequest(delegate: self)
+    ```
+
+2. Start fetching:
+    ```swift
+    bundleReceiptRequest.start()
+    ```
+
+3. Implement `BundleReceiptRequestDelegate` to retrieve `Receipt`:
+    ```swift
+    func bundleReceiptRequest(bundleReceiptRequest: BundleReceiptRequest, didRetrieveReceipt receipt: Receipt?) {
+
+        guard let receipt = receipt where receipt.status == 0 else {
+            handleMissingReceipt()
+        }
+
+        if let purchaseDate = receipt?.purchaseDate {
+            processApplicationPurchaseDate(purchaseDate)
+        }
+
+    }
+    ```
