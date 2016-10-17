@@ -28,17 +28,22 @@ And run `carthage update`.
 
 ## Usage
 
-1. Instantiate `BundleReceiptRequest`:
+1. Import `ReceiptKit` framework
+    ```swift
+    import ReceiptKit
+    ```
+
+2. Instantiate `BundleReceiptRequest`:
     ```swift
     let bundleReceiptRequest = BundleReceiptRequest(delegate: self)
     ```
 
-2. Start fetching:
+3. Start fetching:
     ```swift
     bundleReceiptRequest.start()
     ```
 
-3. Implement `BundleReceiptRequestDelegate` to retrieve `Receipt`:
+4. Implement `BundleReceiptRequestDelegate` to retrieve `Receipt`:
     ```swift
     func bundleReceiptRequest(bundleReceiptRequest: BundleReceiptRequest, didRetrieveReceipt receipt: Receipt?) {
 
