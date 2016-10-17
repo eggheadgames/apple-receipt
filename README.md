@@ -1,34 +1,30 @@
-# ReceiptKit
-
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-Swift receipt framework to retrieve iOS app purchase date
+# Description
 
-This framework was built to help our iOS apps to extract their purchase date from the Apple receipt info provided in iOS 7 and beyond.
-
-As you can see, it still lacks examples.
+`Receipt`: Retrieve a fresh and valid receipt for the current environment.
 
 ## Installation
 
 ### CocoaPods
 
-Add this line to your [Podfile](http://guides.cocoapods.org/using/using-cocoapods.html):
+Add this line to your [`Podfile`](http://guides.cocoapods.org/using/using-cocoapods.html):
 
 ```
 pod 'ReceiptKit', :git => 'https://github.com/eggheadgames/ReceiptKit.git'
 ```
 
-And run `pod install`
+And run `pod install`.
 
 ### Carthage
 
-Add this line to your [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile):
+Add this line to your [`Cartfile`](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile):
 
 ```
 github "eggheadgames/ReceiptKit"
 ```
 
-And run `carthage update`. You can find more info here https://github.com/Carthage/Carthage#getting-started.
+And run `carthage update`.
 
 ## Usage
 
