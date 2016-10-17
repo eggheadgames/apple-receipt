@@ -11,7 +11,7 @@
 Add this line to your [`Podfile`](http://guides.cocoapods.org/using/using-cocoapods.html):
 
 ```
-pod 'ReceiptKit', :git => 'https://github.com/eggheadgames/ReceiptKit.git'
+pod 'ReceiptKit', :git => 'https://github.com/eggheadgames/apple-receipt.git'
 ```
 
 And run `pod install`.
@@ -21,7 +21,7 @@ And run `pod install`.
 Add this line to your [`Cartfile`](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile):
 
 ```
-github "eggheadgames/ReceiptKit"
+github "eggheadgames/apple-receipt"
 ```
 
 And run `carthage update`.
