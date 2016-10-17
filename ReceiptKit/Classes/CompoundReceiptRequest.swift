@@ -6,7 +6,7 @@ import Foundation
 
 protocol CompoundReceiptRequestDelegate: class {
 
-    func compoundReceiptRequest(compoundReceiptRequest: CompoundReceiptRequest, didRetrieveReceipt receipt: Receipt?)
+    func compoundReceiptRequest(_ compoundReceiptRequest: CompoundReceiptRequest, didRetrieve receipt: Receipt?)
 
 }
 
@@ -14,10 +14,10 @@ protocol CompoundReceiptRequestDelegate: class {
 
 final class CompoundReceiptRequest {
 
-    let receiptData: NSData
+    let receiptData: Data
     weak var delegate: CompoundReceiptRequestDelegate?
 
-    init(receiptData: NSData) {
+    init(receiptData: Data) {
         self.receiptData = receiptData
     }
 
@@ -28,28 +28,17 @@ final class CompoundReceiptRequest {
 extension CompoundReceiptRequest {
 
     func start() {
-        beginParsingType(.Production)
+        beginParsing(receiptType: .production)
     }
 
 }
 
 private extension CompoundReceiptRequest {
 
-    func beginParsingType(receiptType: ReceiptType) {
-        let receiptRequest = instantiateReceiptRequestWithReceiptType(receiptType)
-        receiptRequest.start()
-    }
-
-}
-
-// MARK: Receipt request
-
-extension CompoundReceiptRequest {
-
-    func instantiateReceiptRequestWithReceiptType(receiptType: ReceiptType) -> ReceiptRequest {
+    func beginParsing(receiptType: ReceiptType) {
         let receiptRequest = ReceiptRequest(receiptData: receiptData, receiptType: receiptType)
         receiptRequest.delegate = self
-        return receiptRequest
+        receiptRequest.start()
     }
 
 }
@@ -58,33 +47,33 @@ extension CompoundReceiptRequest {
 
 extension CompoundReceiptRequest: ReceiptRequestDelegate {
 
-    func receiptRequest(receiptRequest: ReceiptRequest, didRetrieveReceipt receipt: Receipt?) {
-        didFinishParsingReceipt(receipt, type: receiptRequest.receiptType)
+    func receiptRequest(_ receiptRequest: ReceiptRequest, didRetrieve receipt: Receipt?) {
+        didFinishParsing(receipt: receipt, type: receiptRequest.receiptType)
     }
 
 }
 
 private extension CompoundReceiptRequest {
 
-    func didFinishParsingReceipt(receipt: Receipt?, type: ReceiptType) {
+    func didFinishParsing(receipt: Receipt?, type: ReceiptType) {
         switch type {
-        case .Production:
-            didFinishParsingProductionReceipt(receipt)
-        case .Sandbox:
-            didFinishParsingSandboxReceipt(receipt)
+        case .production:
+            didFinishParsing(productionReceipt: receipt)
+        case .sandbox:
+            didFinishParsing(sandboxReceipt: receipt)
         }
     }
 
-    func didFinishParsingProductionReceipt(receipt: Receipt?) {
-        if let receipt = receipt {
-            delegate?.compoundReceiptRequest(self, didRetrieveReceipt: receipt)
+    func didFinishParsing(productionReceipt: Receipt?) {
+        if let receipt = productionReceipt {
+            delegate?.compoundReceiptRequest(self, didRetrieve: receipt)
         } else {
-            beginParsingType(.Sandbox)
+            beginParsing(receiptType: .sandbox)
         }
     }
 
-    func didFinishParsingSandboxReceipt(receipt: Receipt?) {
-        delegate?.compoundReceiptRequest(self, didRetrieveReceipt: receipt)
+    func didFinishParsing(sandboxReceipt: Receipt?) {
+        delegate?.compoundReceiptRequest(self, didRetrieve: sandboxReceipt)
     }
 
 }
