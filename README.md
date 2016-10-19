@@ -6,18 +6,6 @@
 
 ## Installation
 
-### CocoaPods
-
-Add this line to your [`Podfile`](http://guides.cocoapods.org/using/using-cocoapods.html):
-
-```
-pod 'ReceiptKit', :git => 'https://github.com/eggheadgames/apple-receipt.git'
-```
-
-And run `pod install`.
-
-### Carthage
-
 Add this line to your [`Cartfile`](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile):
 
 ```
