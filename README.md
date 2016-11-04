@@ -1,21 +1,47 @@
-# ReceiptKit
-
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-Swift receipt framework to retrieve iOS app purchase date
+# Description
 
-This framework was built to help our iOS apps to extract their purchase date from the Apple receipt info provided in iOS 7 and beyond.
-
-As you can see, it still lacks examples.
+`Receipt`: Retrieve a fresh and valid receipt for the current environment.
 
 ## Installation
 
-### Carthage
-
-Add this line to your [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile):
+Add this line to your [`Cartfile`](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile):
 
 ```
-github "eggheadgames/ReceiptKit"
+github "eggheadgames/apple-receipt"
 ```
 
-And run `carthage update`. You can find more info here https://github.com/Carthage/Carthage#getting-started.
+And run `carthage update`.
+
+## Usage
+
+1. Import `ReceiptKit` framework
+    ```swift
+    import ReceiptKit
+    ```
+
+2. Instantiate `BundleReceiptRequest`:
+    ```swift
+    let bundleReceiptRequest = BundleReceiptRequest(delegate: self)
+    ```
+
+3. Start fetching:
+    ```swift
+    bundleReceiptRequest.start()
+    ```
+
+4. Implement `BundleReceiptRequestDelegate` to retrieve `Receipt`:
+    ```swift
+    func bundleReceiptRequest(bundleReceiptRequest: BundleReceiptRequest, didRetrieveReceipt receipt: Receipt?) {
+
+        guard let receipt = receipt where receipt.status == 0 else {
+            handleMissingReceipt()
+        }
+
+        if let purchaseDate = receipt?.purchaseDate {
+            processApplicationPurchaseDate(purchaseDate)
+        }
+
+    }
+    ```
